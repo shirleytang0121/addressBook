@@ -2,8 +2,14 @@ class AddressBook extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            
+
         }
+    }
+    handleAddItem(){
+
+    }
+    handleDeleteItem(){
+
     }
     render(){
         return(
@@ -13,5 +19,7 @@ class AddressBook extends React.Component{
         )
     }
 }
+
+
 
 ReactDOM.render(<AddressBook/>,document.getElementById("app"))
