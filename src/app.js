@@ -1,6 +1,7 @@
 class AddressBook extends React.Component{
     constructor(props){
         super(props);
+        
         this.state={
             firstName:["niki","tt"]
         }
@@ -35,7 +36,7 @@ class AddItem extends React.Component{
     render(){
         return(
             <div>
-                <form>
+                <form onSubmit={this.handleAddItem}>
                     <input type='text' name='firstName'/>
                     <button>Submit</button>
                 </form>

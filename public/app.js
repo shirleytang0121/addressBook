@@ -17,9 +17,7 @@ var AddressBook = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (AddressBook.__proto__ || Object.getPrototypeOf(AddressBook)).call(this, props));
 
         _this.state = {
-            firstName: [{ name: "niki",
-                birthday: '1997/1/2'
-            }]
+            firstName: ["niki", "tt"]
         };
         return _this;
     }
@@ -36,7 +34,8 @@ var AddressBook = function (_React$Component) {
             return React.createElement(
                 "div",
                 null,
-                React.createElement(ShowItem, { firstName: this.state.firstName })
+                React.createElement(ShowItem, { firstName: this.state.firstName }),
+                React.createElement(AddItem, { handleAddItem: this.handleAddItem })
             );
         }
     }]);
@@ -65,6 +64,38 @@ var ShowItem = function (_React$Component2) {
     }]);
 
     return ShowItem;
+}(React.Component);
+
+var AddItem = function (_React$Component3) {
+    _inherits(AddItem, _React$Component3);
+
+    function AddItem() {
+        _classCallCheck(this, AddItem);
+
+        return _possibleConstructorReturn(this, (AddItem.__proto__ || Object.getPrototypeOf(AddItem)).apply(this, arguments));
+    }
+
+    _createClass(AddItem, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "form",
+                    null,
+                    React.createElement("input", { type: "text", name: "firstName" }),
+                    React.createElement(
+                        "button",
+                        null,
+                        "Submit"
+                    )
+                )
+            );
+        }
+    }]);
+
+    return AddItem;
 }(React.Component);
 
 ReactDOM.render(React.createElement(AddressBook, null), document.getElementById("app"));
