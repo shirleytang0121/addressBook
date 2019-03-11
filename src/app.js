@@ -7,7 +7,12 @@ class AddressBook extends React.Component{
             firstName:["niki","tt"]
         }
     }
-    handleAddItem(){
+    handleAddItem(firstName){
+       this.setState((prevState)=>{
+           return{
+               firstName:prevState.firstName.concat(firstName)
+           }
+       })
 
     }
     handleDeleteItem(){
@@ -27,13 +32,25 @@ class ShowItem extends React.Component{
     render(){
         return(
             <div>
-                {this.props.firstName}
+                {this.props.firstName.map((firstName)=><p key={firstName}>Name:{firstName}</p>)}
             </div>
         )
     }
 }
 
 class AddItem extends React.Component{
+    constructor(props){
+        super(props);
+        this.handleAddItem=this.handleAddItem.bind(this);
+    }
+    handleAddItem(e){
+        e.preventDefault();
+
+        const firstName=e.target.elements.firstName.value.trim();
+        if(firstName){
+            this.props.handleAddItem(firstName);
+        }
+    }
     render(){
         return(
             <div>

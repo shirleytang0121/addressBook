@@ -16,6 +16,8 @@ var AddressBook = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (AddressBook.__proto__ || Object.getPrototypeOf(AddressBook)).call(this, props));
 
+        _this.handleAddItem = _this.handleAddItem.bind(_this);
+        _this.handleDeleteItem = _this.handleDeleteItem.bind(_this);
         _this.state = {
             firstName: ["niki", "tt"]
         };
@@ -24,7 +26,13 @@ var AddressBook = function (_React$Component) {
 
     _createClass(AddressBook, [{
         key: "handleAddItem",
-        value: function handleAddItem() {}
+        value: function handleAddItem(firstName) {
+            this.setState(function (prevState) {
+                return {
+                    firstName: prevState.firstName.concat(firstName)
+                };
+            });
+        }
     }, {
         key: "handleDeleteItem",
         value: function handleDeleteItem() {}
@@ -58,7 +66,14 @@ var ShowItem = function (_React$Component2) {
             return React.createElement(
                 "div",
                 null,
-                this.props.firstName
+                this.props.firstName.map(function (firstName) {
+                    return React.createElement(
+                        "p",
+                        { key: firstName },
+                        "Name:",
+                        firstName
+                    );
+                })
             );
         }
     }]);
@@ -69,13 +84,26 @@ var ShowItem = function (_React$Component2) {
 var AddItem = function (_React$Component3) {
     _inherits(AddItem, _React$Component3);
 
-    function AddItem() {
+    function AddItem(props) {
         _classCallCheck(this, AddItem);
 
-        return _possibleConstructorReturn(this, (AddItem.__proto__ || Object.getPrototypeOf(AddItem)).apply(this, arguments));
+        var _this3 = _possibleConstructorReturn(this, (AddItem.__proto__ || Object.getPrototypeOf(AddItem)).call(this, props));
+
+        _this3.handleAddItem = _this3.handleAddItem.bind(_this3);
+        return _this3;
     }
 
     _createClass(AddItem, [{
+        key: "handleAddItem",
+        value: function handleAddItem(e) {
+            e.preventDefault();
+
+            var firstName = e.target.elements.firstName.value.trim();
+            if (firstName) {
+                this.props.handleAddItem(firstName);
+            }
+        }
+    }, {
         key: "render",
         value: function render() {
             return React.createElement(
@@ -83,7 +111,7 @@ var AddItem = function (_React$Component3) {
                 null,
                 React.createElement(
                     "form",
-                    null,
+                    { onSubmit: this.handleAddItem },
                     React.createElement("input", { type: "text", name: "firstName" }),
                     React.createElement(
                         "button",
