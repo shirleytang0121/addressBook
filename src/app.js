@@ -1,7 +1,8 @@
 class AddressBook extends React.Component{
     constructor(props){
         super(props);
-        
+        this.handleAddItem=this.handleAddItem.bind(this);
+        this.handleDeleteItem=this.handleDeleteItem.bind(this);
         this.state={
             firstName:["niki","tt"]
         }
