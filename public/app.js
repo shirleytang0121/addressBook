@@ -19,7 +19,13 @@ var AddressBook = function (_React$Component) {
         _this.handleAddItem = _this.handleAddItem.bind(_this);
         _this.handleDeleteItem = _this.handleDeleteItem.bind(_this);
         _this.state = {
-            firstName: ["niki", "tt"]
+            firstName: [{
+                name: "niki",
+                age: 23
+            }, {
+                name: "tt",
+                age: 24
+            }]
         };
         return _this;
     }
@@ -68,10 +74,20 @@ var ShowItem = function (_React$Component2) {
                 null,
                 this.props.firstName.map(function (firstName) {
                     return React.createElement(
-                        "p",
-                        { key: firstName },
-                        "Name:",
-                        firstName
+                        "div",
+                        { key: firstName.name },
+                        React.createElement(
+                            "p",
+                            null,
+                            "Name:",
+                            firstName.name
+                        ),
+                        React.createElement(
+                            "p",
+                            null,
+                            "age:",
+                            firstName.age
+                        )
                     );
                 })
             );

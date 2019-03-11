@@ -4,7 +4,16 @@ class AddressBook extends React.Component{
         this.handleAddItem=this.handleAddItem.bind(this);
         this.handleDeleteItem=this.handleDeleteItem.bind(this);
         this.state={
-            firstName:["niki","tt"]
+            firstName:[
+                {
+                    name:"niki",
+                    age:23
+                },
+                {
+                    name:"tt",
+                    age:24
+                },
+            ]
         }
     }
     handleAddItem(firstName){
@@ -32,7 +41,10 @@ class ShowItem extends React.Component{
     render(){
         return(
             <div>
-                {this.props.firstName.map((firstName)=><p key={firstName}>Name:{firstName}</p>)}
+                {this.props.firstName.map((firstName)=>
+                <div key={firstName.name}><p>Name:{firstName.name}</p><p>age:{firstName.age}</p></div>
+                    
+                )}
             </div>
         )
     }
